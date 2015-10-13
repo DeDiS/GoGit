@@ -19,7 +19,7 @@ func main() {
 	for {
 		fmt.Print("Chose either (r)ock, (p)aper or (s)cissors: ")
 		input, _ := reader.ReadString('\n')
-		if human := Convert(input); human >= 0{
+		if human := Convert(string(input[0])); human >= 0{
 			computer := rand.Intn(3)
 			switch Wins(human, computer){
 			case -1:
@@ -40,7 +40,21 @@ func main() {
 // * p - PAPER
 // Return -1 for non-valid string
 func Convert(s string) int{
-	return -1
+	 switch s {
+	 case "r":
+		 return ROCK
+	 case "R":
+	 	return ROCK
+	case "s":
+		return SCISSORS
+	case "S":
+		return SCISSORS
+	case "p":
+		return PAPER
+	case "P":
+		return PAPER
+	 }
+	 return -1
 }
 
 // Takes two turns and returns
@@ -49,5 +63,34 @@ func Convert(s string) int{
 // * 1 for win of player 1
 // Only valid turns are given in the argument
 func Wins(player1, player2 int) int{
-	return 0
+	switch player1 {
+	case PAPER:
+		switch player2 {
+		case PAPER:
+			return 0
+		case ROCK :
+			return 1
+		case SCISSORS:
+			return -1
+		}
+	case ROCK :
+		switch player2 {
+		case PAPER:
+			return -1
+		case ROCK :
+			return 0
+		case SCISSORS:
+			return 1
+		}
+	case SCISSORS:
+		switch player2 {
+		case PAPER:
+			return 1
+		case ROCK :
+			return -1
+		case SCISSORS:
+			return 0
+		}
+	}
+	return -1
 }

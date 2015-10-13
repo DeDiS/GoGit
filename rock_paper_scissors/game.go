@@ -19,7 +19,7 @@ func main() {
 	for {
 		fmt.Print("Chose either (r)ock, (p)aper or (s)cissors: ")
 		input, _ := reader.ReadString('\n')
-		if human := Convert(input); human >= 0 {
+		if human := Convert(string(input[0])); human >= 0 {
 			computer := rand.Intn(3)
 			switch Wins(human, computer) {
 			case -1:

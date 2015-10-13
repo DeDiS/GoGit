@@ -1,6 +1,7 @@
 package main
 
 import (
+	"strings"
 	"math/rand"
 	"fmt"
 	"bufio"
@@ -40,6 +41,14 @@ func main() {
 // * p - PAPER
 // Return -1 for non-valid string
 func Convert(s string) int{
+	switch strings.ToLower(string(s[0])){
+	case "r":
+		return ROCK
+	case "s":
+		return SCISSORS
+	case "p":
+		return PAPER
+	}
 	return -1
 }
 
@@ -49,5 +58,12 @@ func Convert(s string) int{
 // * 1 for win of player 1
 // Only valid turns are given in the argument
 func Wins(player1, player2 int) int{
-	return 0
+	switch ( player1 + 3 - player2 ) % 3{
+	default:
+		return 0
+	case 1:
+		return -1
+	case 2:
+		return 1
+	}
 }

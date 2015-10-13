@@ -62,9 +62,16 @@ func Wins(player1, player2 int) int {
 	if player1 == player2 {
 		return 0
 	}
-	if (player1 == 0 && player2 == 1) || (player1 == 1 && player2 == 2) || (player1 == 2 && player2 == 0) {
+	//r-0, s-1, p-2
+	//p1 wins if 0-1+3 mod 3, 1-2+3 mod 3, 2-0+3 mod 3 --all 2
+	//p2 wins if 0-2 , 1-0 2-1 + 3 mod 3 = 1
+	switch (player1 - player2 + 3) % 3 {
+	case 1:
+		return -1
+	case 2:
 		return 1
+	default:
+		return 0
+
 	}
-	return -1
-	return 0
 }

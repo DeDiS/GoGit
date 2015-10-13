@@ -63,34 +63,5 @@ func Convert(s string) int{
 // * 1 for win of player 1
 // Only valid turns are given in the argument
 func Wins(player1, player2 int) int{
-	switch player1 {
-	case PAPER:
-		switch player2 {
-		case PAPER:
-			return 0
-		case ROCK :
-			return 1
-		case SCISSORS:
-			return -1
-		}
-	case ROCK :
-		switch player2 {
-		case PAPER:
-			return -1
-		case ROCK :
-			return 0
-		case SCISSORS:
-			return 1
-		}
-	case SCISSORS:
-		switch player2 {
-		case PAPER:
-			return 1
-		case ROCK :
-			return -1
-		case SCISSORS:
-			return 0
-		}
-	}
-	return -1
+	return (player2 - player1 + 4) % 3 - 1
 }
